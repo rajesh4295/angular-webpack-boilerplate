@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+      "target": "es5",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "noImplicitAny": true,
+      "suppressImplicitAnyIndexErrors": true,
+      "lib": ["es6", "dom"],
+      "typeRoots": ["node_modules/@types"],
+    },
+    "angularCompilerOptions": {
+      "disableTypeScriptVersionCheck": true,
+      "skipMetadataEmit" : true,
+      "enableIvy": false,
+   },
+    "exclude": [
+      "node_modules",
+      "dist",
+      "src/main.ts"
+    ],
+    "includes": [
+      "externals.d.ts"
+    ]
+  }
+  
