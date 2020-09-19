@@ -23,6 +23,12 @@ module.exports = merge(commonConfig, {
                   test: /[\\/]node_modules[\\/]/,
                   name: "vendors",
                   chunks: "all"
+                },
+                styles: {
+                    name: 'styles',
+                    test: /\.css$/,
+                    chunks: 'all',
+                    enforce: true,
                 }
             }
         }

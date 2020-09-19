@@ -4,8 +4,14 @@
     <base href="/">
     <meta charset="UTF-8">
     <title>Boilerplate</title>
+    <%= htmlWebpackPlugin.files.css.map(href =>
+        '<link href="' + href + '" rel="stylesheet">'
+    ).join('\n') %>
 </head>
 <body>
     <app-root></app-root>
+    <%= htmlWebpackPlugin.files.js.map(href =>
+        '<script type="text/javascript" src="' + href + '"></script>'
+    ).join('\n') %>
 </body>
 </html>

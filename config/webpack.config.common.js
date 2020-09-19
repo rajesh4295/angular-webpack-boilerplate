@@ -28,7 +28,19 @@ const styleRuleProd = [
     {
         test: /\.less$/,
         use: [
-            'raw-loader',
+            {
+                loader: "file-loader",
+                options: {
+                    name: "assets/styles/[name].[contenthash].css",
+                }
+            },
+            {
+                loader: "extract-loader",
+                options: {
+                    publicPath: "../",
+                }
+            },
+            'css-loader',
             'less-loader'
         ],
         exclude: helpers.root('src', 'assets')
@@ -65,7 +77,8 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-                loader: 'html-loader'
+                loader: 'raw-loader',
+                exclude: /index\.html$/
             },
             {
                 test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
@@ -99,7 +112,9 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
         new HtmlWebpackPlugin({
-            template: `src/index.html`
+            template: `src/index.html`,
+            filename: 'index.html',
+            inject: false
         }),
         new BrotliPlugin({
 			asset: '[path].br[query]',
@@ -111,8 +126,8 @@ module.exports = {
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
-            filename: 'assets/styles/[name].css',
-            chunkFilename: 'assets/styles/[name].css',
-          })
+            filename: 'assets/styles/[name].[contenthash].css',
+            // chunkFilename: 'assets/styles/[name].css',
+        }),
     ]
 };
